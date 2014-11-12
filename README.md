@@ -1,4 +1,4 @@
-cm-worksheet
+cm
 ============
 
-CM tool comparison worksheet
+CM tools, comparisons, examples
