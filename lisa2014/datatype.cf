@@ -1,0 +1,24 @@
+body common control
+{
+      inputs => { "$(sys.libdir)/stdlib.cf" };
+      bundlesequence => { main };
+}
+
+bundle agent main
+{
+  vars:
+      # load at most 1MB from datatype.cf.json
+      "config" data => readjson("$(this.promise_filename).json", 1024k);
+      # ... or inline ...
+      # "config" data => parsejson('[ ... JSON data here ... ]');
+
+      # get the keys of the config
+      "keys" slist => getindices(config);
+
+      # get the second-level keys
+      "second_$(keys)" slist => getindices("config[$(keys)]");
+
+  reports:
+      # don't be scared, this is just variable substitution and implicit iteration!
+      "$(this.bundle): from the loaded config, we got top-level key $(keys) and under it, second level key $(second_$(keys)) with value $(config[$(keys)][$(second_$(keys))])";
+}

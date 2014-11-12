@@ -1,0 +1,19 @@
+body common control
+{
+      inputs => { "$(sys.libdir)/stdlib.cf" };
+      bundlesequence => { main };
+}
+
+bundle agent main
+{
+  methods:
+      "bye" usebundle => rm_rf("/var/tmp/oldstuff");
+      "bye" usebundle => file_tidy("/var/tmp/oldstuff.txt");
+      "empty" usebundle => file_empty("/var/tmp/mystuff.txt");
+      "" usebundle => file_hardlink("/tmp/z.txt", "/tmp/z.link");
+      "" usebundle => file_link("/tmp/z.txt", "/tmp/z.link");
+      "" usebundle => dir_sync("/tmp", "/var/tmp");
+      "" usebundle => file_make("/tmp/z.txt", "Some text, libdir is $(sys.libdir),
+and some more text here");
+      "m" usebundle => file_mustache_jsonstring("x.mustache", '{ "x": "y" }', "z.txt");
+}

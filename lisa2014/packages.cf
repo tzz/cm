@@ -1,0 +1,13 @@
+body common control
+{
+      inputs => { "$(sys.libdir)/stdlib.cf" };
+      bundlesequence => { main };
+}
+
+bundle agent main
+{
+  methods:
+      "pleasezip" usebundle => package_present("zip");
+      "pleasezip" usebundle => package_latest("zip");
+      "nozip" usebundle => package_absent("zip2");
+}
