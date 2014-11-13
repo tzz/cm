@@ -1,0 +1,23 @@
+body common control
+{
+      inputs => { "$(sys.libdir)/stdlib.cf" };
+      bundlesequence => { main };
+}
+
+bundle agent main
+{
+  files:
+    redhat::
+      "/tmp/up2date.txt" edit_line => myedit;
+}
+
+bundle edit_line myedit
+{
+  insert_lines:
+    debian::
+      "Sweden";
+    redhat::
+      "Germany";
+  delete_lines:
+      "Orlando";
+}

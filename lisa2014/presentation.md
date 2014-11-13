@@ -115,7 +115,7 @@ We will not discuss the client-server setup, known as **bootstrapping**, but the
 
 In 3.6, major additions to the base policies were done in **bundles** (for now, think of them as functions) to do common tasks.  Before 3.6, these were added haphazardly, but in 3.6 the base set of bundles was greatly expanded.  So we'll use them whenever possible.  You can find the list at https://docs.cfengine.com/docs/3.6/reference-standard-library.html
 
-Another improvement in 3.6 are the `--list-classes` and `--list-vars` options to `cf-promises`.  Run with them to see the list of built-in variables and classes with the base policies.  For example, `sys.libdir` will expand to `/var/cfengine/inputs/lib/3.6` in a 3.6 installation.
+Another improvement in 3.6 are the `--show-classes` and `--show-vars` options to `cf-promises`.  Run with them to see the list of built-in variables and classes with the base policies.  For example, `sys.libdir` will expand to `/var/cfengine/inputs/lib/3.6` in a 3.6 installation.
 
 The starting point for our policies will be very simple:
 
